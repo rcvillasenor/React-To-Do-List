@@ -1,7 +1,8 @@
+import { useState } from "react"
 import "./styles.css";
 
 export default function App() {
-  /*const [newItem, setNewItem] = useState("")
+  const [newItem, setNewItem] = useState("")
   const [todos, setTodos] = useState("")
 
   function handleSubmit(e) {
@@ -19,14 +20,14 @@ export default function App() {
     })
   }
 
-  console.log(todos)*/
+  console.log(todos)
 
   return (
     <>
       <form onSubmit={handleSubmit} className="new-item-form">
         <div className="form-row">
           <label htmlFor="item">New Item</label>
-          <input /*value={newItem} onChange={e => setNewItem(e.target.value)}*/ type="text" id="item"></input>
+          <input value={newItem} onChange={e => setNewItem(e.target.value)} type="text" id="item"></input>
         </div>
         <button className="btn">Add</button>
       </form>
