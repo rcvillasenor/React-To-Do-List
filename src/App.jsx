@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./styles.css";
 
 export default function App() {
-  const [newItem, setNewItem] = useState("")
-  const [todos, setTodos] = useState([])
+  const [newItem, setNewItem] = useState("");
+  const [todos, setTodos] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -12,23 +12,27 @@ export default function App() {
       return [
         ...currentTodos,
         { id: crypto.randomUUID(), title: newItem, completed: false },
-      ]
-    })
-
-    setNewItem("")
-
+      ];
+    });
+    setNewItem("");
   }
 
   function toggleTodo(id, completed) {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if(todo.id === id) {
-          return {...todo, completed}
+    setTodos((currentTodos) => {
+      return currentTodos.map((todos) => {
+        if (todos.id === id) {
+          return { ...todos, completed };
         }
 
-        return todo
-      })
-    })
+        return todos;
+      });
+    });
+  }
+
+  function deleteTodo(id) {
+    setTodos((currentTodos) => {
+      return currentTodos.filter((todos) => todos.id !== id);
+    });
   }
 
   return (
@@ -47,15 +51,24 @@ export default function App() {
       </form>
       <h1 className="header">To-do List</h1>
       <ul>
+        {todos.length === 0 && "No Todos"}
         {todos.map((todos) => {
           return (
             <li key={todos.id}>
               <label>
-                <input type="checkbox" checked={todos.completed} 
-                onChange={e => toggleTodo(todos.id, e.target.checked)}/>
+                <input
+                  type="checkbox"
+                  checked={todos.completed}
+                  onChange={(e) => toggleTodo(todos.id, e.target.checked)}
+                />
                 {todos.title}
               </label>
-              <button className="btn btn-danger">Delete</button>
+              <button
+                onClick={() => deleteTodo(todos.id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
             </li>
           );
         })}
