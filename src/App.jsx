@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./styles.css";
 
 export default function App() {
-  const [newItem, setNewItem] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [newItem, setNewItem] = useState("")
+  const [todos, setTodos] = useState([])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -12,11 +12,13 @@ export default function App() {
       return [
         ...currentTodos,
         { id: crypto.randomUUID(), title: newItem, completed: false },
-      ];
-    });
+      ]
+    })
+
+    setNewItem("")
+
   }
 
-  console.log(todos);
 
   return (
     <>
